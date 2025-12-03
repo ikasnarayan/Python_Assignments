@@ -1,8 +1,8 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, constr
 
 class UserCreate(BaseModel):
     username: str
-    password: str
+    password: constr(min_length=8, max_length=128)  # type: ignore # Argon2 supports long passphrases
 
 class UserLogin(BaseModel):
     username: str
